@@ -55,7 +55,6 @@ else:
     POLL.register(FD, POLLIN)
     EVT = XWIIMOTE.event()
     CONST_N = 0
-    RECORD = False
     OUTPUT = ""
     OUTPUT_FILE = None
     EXPERIMENT = Experiment()
@@ -66,35 +65,23 @@ else:
             DEV.dispatch(EVT)
             if EVT.type == XWIIMOTE.EVENT_KEY:
                 KEY, STATE = EVT.get_key()
-                if KEY == XWIIMOTE.KEY_A and STATE == 1:
-                    if not RECORD:
-                        print "RECORD"
-                        RECORD = True
-                        OUTPUT = ""
-                        START_TIME = int(round(time.time() * 1000))
-                    else:
-                        print "STOP RECORD"
-                        RECORD = False
-                        OUTPUT_FILE = open(
-                            "../data/record-"+str(time.time())+".txt", "w"
-                        )
-                        OUTPUT_FILE.write(OUTPUT)
-                        OUTPUT_FILE.close()
-                        CONST_N = 2
-                elif RECORD and KEY == XWIIMOTE.KEY_B:
+                if KEY == XWIIMOTE.KEY_B:
                     if STATE == 1:
                         print "START"
-                        OUTPUT += str(int(round(time.time() * 1000)) - \
-                        START_TIME) + " START\n"
+                        EXPERIMENT.press_b_down()
                     elif STATE == 0:
                         print "END"
-                        OUTPUT += str(int(round(time.time() * 1000)) - \
-                        START_TIME) + " END\n"
+                        EXPERIMENT.press_b_up()
+                        if EXPERIMENT.is_finished():
+                            OUTPUT_FILE = open(
+                                "data/record-"+str(time.time())+".txt", "w"
+                            )
+                            OUTPUT_FILE.write(EXPERIMENT.get_output())
+                            OUTPUT_FILE.close()
+                            CONST_N = 2
             elif EVT.type == XWIIMOTE.EVENT_ACCEL:
                 X_VALUE, Y_VALUE, Z_VALUE = EVT.get_abs(0)
-                OUTPUT += str(int(round(time.time() * 1000)) - START_TIME) \
-                + " " + str(X_VALUE) + " " + str(Y_VALUE) + " " \
-                + str(Z_VALUE) + "\n"
+                EXPERIMENT.accel(X_VALUE, Y_VALUE, Z_VALUE)
             elif EVT.type == XWIIMOTE.EVENT_GONE:
                 print "Gone"
                 CONST_N = 2

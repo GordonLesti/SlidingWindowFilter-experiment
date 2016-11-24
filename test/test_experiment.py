@@ -38,7 +38,7 @@ class TestExperiment(unittest.TestCase):
         """Tests the method is_finished"""
         experiment = Experiment()
         self.assertEquals(False, experiment.is_finished())
-        for _ in range(0, 15):
+        for _ in range(0, 17):
             experiment.press_b_down()
             self.assertEquals(False, experiment.is_finished())
             experiment.press_b_up()

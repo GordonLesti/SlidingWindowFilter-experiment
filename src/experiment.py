@@ -9,7 +9,7 @@ class Experiment(object):
         self.task_index = 0
         self.start_time = int(round(time.time() * 1000))
         self.tasks = [
-            "Hello, please perform any gesture with the controller"
+            "Hello, please perform any gesture with the controller",
             "Please perform gesture _Figure 1_",
             "Please perform gesture _Figure 2_",
             "Please perform gesture _Figure 3_",
@@ -33,7 +33,9 @@ class Experiment(object):
             "rds",
             "Please do as if you drink something from a cup and perform _Figu" \
             "re 8_ afterwards",
-            "Thank you very much"
+            "Thank you very much, please make any gesture to close the experi" \
+            "ment",
+            "Good bye"
         ]
         self.button_b_down = False
         self.__request_current_task()
