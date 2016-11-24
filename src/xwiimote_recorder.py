@@ -3,9 +3,13 @@
 import errno
 import time
 from select import poll, POLLIN
+from src.experiment import Experiment
 try:
     XWIIMOTE = __import__("xwiimote")
 except ImportError:
+    print "No xwiimote found"
+    exit(1)
+else:
     # display a constant
     print "=== " + XWIIMOTE.NAME_CORE + " ==="
 
@@ -54,6 +58,7 @@ except ImportError:
     RECORD = False
     OUTPUT = ""
     OUTPUT_FILE = None
+    EXPERIMENT = Experiment()
     START_TIME = 0
     while CONST_N < 2:
         POLL.poll()

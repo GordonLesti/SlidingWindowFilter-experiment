@@ -9,14 +9,15 @@ class Experiment(object):
         self.task_index = 0
         self.start_time = int(round(time.time() * 1000))
         self.tasks = [
-            "Please perform _Figure 1_",
-            "Please perform _Figure 2_",
-            "Please perform _Figure 3_",
-            "Please perform _Figure 4_",
-            "Please perform _Figure 5_",
-            "Please perform _Figure 6_",
-            "Please perform _Figure 7_",
-            "Please perform _Figure 8_",
+            "Hello, please perform any gesture with the controller"
+            "Please perform gesture _Figure 1_",
+            "Please perform gesture _Figure 2_",
+            "Please perform gesture _Figure 3_",
+            "Please perform gesture _Figure 4_",
+            "Please perform gesture _Figure 5_",
+            "Please perform gesture _Figure 6_",
+            "Please perform gesture _Figure 7_",
+            "Please perform gesture _Figure 8_",
             "Please go around the table once and perform _Figure 1_ afterwards",
             "Please sit down on the ground, get up again and perform _Figure " \
             "2_ afterwards",
@@ -31,9 +32,11 @@ class Experiment(object):
             "Please get on a chair, down again and perform _Figure 7_ afterwa" \
             "rds",
             "Please do as if you drink something from a cup and perform _Figu" \
-            "re 8_ afterwards"
+            "re 8_ afterwards",
+            "Thank you very much"
         ]
         self.button_b_down = False
+        self.__request_current_task()
 
     def accel(self, x_value, y_value, z_value):
         """Store accel data"""
@@ -57,6 +60,12 @@ class Experiment(object):
         + str(self.task_index) + "\n"
         self.task_index = self.task_index + 1
         self.__request_current_task()
+
+    def is_finished(self):
+        """Returns the status of the experiment"""
+        if self.task_index >= len(self.tasks) - 1:
+            return True
+        return False
 
     def get_output(self):
         """Returns the output of the experiment"""
