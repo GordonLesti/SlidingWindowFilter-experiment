@@ -14,7 +14,7 @@
    id="svg3819"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="layout.svg">
+   sodipodi:docname="10.svg">
   <defs
      id="defs3821" />
   <sodipodi:namedview
@@ -25,7 +25,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="100.07631"
+     inkscape:cx="105.7906"
      inkscape:cy="520"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -84,7 +84,7 @@
            y="68.5625"
            style="font-size:120px;font-weight:normal;text-align:start;text-anchor:start;fill:#000000;-inkscape-font-specification:Sans" /></flowRegion><flowPara
          id="flowPara3039">and perform the following</flowPara><flowPara
-         id="flowPara3107">figure afterwards</flowPara></flowRoot>    <g
+         id="flowPara3107">gesture afterwards</flowPara></flowRoot>    <g
        id="g3890">
       <g
          transform="matrix(1.3266949,0,0,1.3266949,1101.9318,-51.424952)"

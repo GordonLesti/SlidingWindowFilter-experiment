@@ -3,12 +3,34 @@
 import unittest
 from src.experiment import Experiment
 
+class TasksMock(object):
+    """A small test class that mocks the task GUI"""
+
+    def __init__(self):
+        self.image_count = 19
+        self.task_index = 0
+
+    def next_task(self):
+        """Continues with the next task"""
+        self.task_index = self.task_index + 1
+
+    def is_finished(self):
+        """Returns the status of the test tasks"""
+        if self.task_index + 1 >= self.image_count:
+            return True
+        return False
+
+    def get_task_index(self):
+        """Returns the tesk index"""
+        return self.task_index
+
+
 # pylint: disable=R0904
 class TestExperiment(unittest.TestCase):
     """A class that tests the class Experiment"""
     def test_accel(self):
         """Tests the method accel"""
-        experiment = Experiment()
+        experiment = Experiment(TasksMock())
         experiment.accel(80, 48, 97)
         experiment.accel(3, 42, 79)
         self.assertRegexpMatches(
@@ -18,7 +40,7 @@ class TestExperiment(unittest.TestCase):
 
     def test_press_b_success(self):
         """Tests the method press_b_down"""
-        experiment = Experiment()
+        experiment = Experiment(TasksMock())
         experiment.accel(80, 48, 97)
         experiment.press_b_down()
         experiment.accel(3, 42, 79)
@@ -36,7 +58,7 @@ class TestExperiment(unittest.TestCase):
 
     def test_is_finished(self):
         """Tests the method is_finished"""
-        experiment = Experiment()
+        experiment = Experiment(TasksMock())
         self.assertEquals(False, experiment.is_finished())
         for _ in range(0, 17):
             experiment.press_b_down()
