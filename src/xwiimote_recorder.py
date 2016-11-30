@@ -4,6 +4,7 @@ import errno
 import time
 from select import poll, POLLIN
 from src.experiment import Experiment
+from src.tasks_gui import TasksGui
 try:
     XWIIMOTE = __import__("xwiimote")
 except ImportError:
@@ -57,7 +58,7 @@ else:
     CONST_N = 0
     OUTPUT = ""
     OUTPUT_FILE = None
-    EXPERIMENT = Experiment()
+    EXPERIMENT = Experiment(TasksGui())
     START_TIME = 0
     while CONST_N < 2:
         POLL.poll()
@@ -67,10 +68,8 @@ else:
                 KEY, STATE = EVT.get_key()
                 if KEY == XWIIMOTE.KEY_B:
                     if STATE == 1:
-                        print "START"
                         EXPERIMENT.press_b_down()
                     elif STATE == 0:
-                        print "END"
                         EXPERIMENT.press_b_up()
                         if EXPERIMENT.is_finished():
                             OUTPUT_FILE = open(
