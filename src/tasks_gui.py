@@ -1,8 +1,7 @@
 """This script contains the Tasks Gui class"""
 
-from PIL import ImageTk
-import PIL.Image
 from Tkinter import Tk, Label, TOP, BOTH, YES
+from PIL import ImageTk, Image
 
 class TasksGui(object):
     """A small Tkinter GUI that shows the tasks"""
@@ -11,7 +10,7 @@ class TasksGui(object):
         self.root = Tk()
         self.image_count = 19
         self.task_index = 0
-        self.task_image = PIL.Image.open(
+        self.task_image = Image.open(
             "img/" + str(self.task_index + 1) + ".png"
         )
         self.photo_image = ImageTk.PhotoImage(self.task_image)
@@ -26,7 +25,7 @@ class TasksGui(object):
     def next_task(self):
         """Continues with the next task"""
         self.task_index = self.task_index + 1
-        self.task_image = PIL.Image.open(
+        self.task_image = Image.open(
             "img/" + str(self.task_index + 1) + ".png"
         )
         self.photo_image = ImageTk.PhotoImage(self.task_image)

@@ -59,7 +59,6 @@ else:
     OUTPUT = ""
     OUTPUT_FILE = None
     EXPERIMENT = Experiment(TasksGui())
-    START_TIME = 0
     while CONST_N < 2:
         POLL.poll()
         try:
