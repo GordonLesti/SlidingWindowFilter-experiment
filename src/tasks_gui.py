@@ -8,11 +8,18 @@ class TasksGui(object):
 
     def __init__(self):
         self.root = Tk()
+        self.size = (
+            self.root.winfo_screenwidth(),
+            self.root.winfo_screenheight()
+        )
+        self.root.overrideredirect(1)
+        self.root.geometry("%dx%d+0+0" % self.size)
         self.image_count = 19
         self.task_index = 0
         self.task_image = Image.open(
             "img/" + str(self.task_index + 1) + ".png"
         )
+        self.task_image = self.task_image.resize(self.size, Image.ANTIALIAS)
         self.photo_image = ImageTk.PhotoImage(self.task_image)
         self.panel = Label(
             self.root,
@@ -28,6 +35,7 @@ class TasksGui(object):
         self.task_image = Image.open(
             "img/" + str(self.task_index + 1) + ".png"
         )
+        self.task_image = self.task_image.resize(self.size, Image.ANTIALIAS)
         self.photo_image = ImageTk.PhotoImage(self.task_image)
         self.panel.configure(image=self.photo_image)
         self.panel.image = self.photo_image
@@ -40,5 +48,5 @@ class TasksGui(object):
         return False
 
     def get_task_index(self):
-        """Returns the tesk index"""
+        """Returns the task index"""
         return self.task_index
