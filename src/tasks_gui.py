@@ -16,14 +16,17 @@ class TasksGui(object):
         self.root.geometry("%dx%d+0+0" % self.size)
         self.image_count = 19
         self.task_index = 0
-        self.task_image = Image.open(
-            "img/" + str(self.task_index + 1) + ".png"
-        )
-        self.task_image = self.task_image.resize(self.size, Image.ANTIALIAS)
-        self.photo_image = ImageTk.PhotoImage(self.task_image)
+        self.task_images = range(self.image_count);
+        self.photo_images = range(self.image_count);
+        for i in range(self.image_count):
+            self.task_images[i] = Image.open(
+                "img/" + str(i + 1) + ".png"
+            )
+            self.task_images[i] = self.task_images[i].resize(self.size, Image.ANTIALIAS)
+            self.photo_images[i] = ImageTk.PhotoImage(self.task_images[i])
         self.panel = Label(
             self.root,
-            image=self.photo_image,
+            image=self.photo_images[0],
             background='white'
         )
         self.panel.pack(side=TOP, fill=BOTH, expand=YES)
@@ -32,13 +35,8 @@ class TasksGui(object):
     def next_task(self):
         """Continues with the next task"""
         self.task_index = self.task_index + 1
-        self.task_image = Image.open(
-            "img/" + str(self.task_index + 1) + ".png"
-        )
-        self.task_image = self.task_image.resize(self.size, Image.ANTIALIAS)
-        self.photo_image = ImageTk.PhotoImage(self.task_image)
-        self.panel.configure(image=self.photo_image)
-        self.panel.image = self.photo_image
+        self.panel.configure(image=self.photo_images[self.task_index])
+        self.panel.image = self.photo_images[self.task_index]
         self.root.update()
 
     def is_finished(self):
