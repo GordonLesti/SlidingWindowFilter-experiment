@@ -16,8 +16,8 @@ class TasksGui(object):
         self.root.geometry("%dx%d+0+0" % self.size)
         self.image_count = 19
         self.task_index = 0
-        self.task_images = range(self.image_count);
-        self.photo_images = range(self.image_count);
+        self.task_images = range(self.image_count)
+        self.photo_images = range(self.image_count)
         for i in range(self.image_count):
             self.task_images[i] = Image.open(
                 "img/" + str(i + 1) + ".png"
