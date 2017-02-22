@@ -9,7 +9,7 @@ class TasksGui(object):
     def __init__(self):
         self.root = Tk()
         self.size = (
-            self.root.winfo_screenwidth(),
+            2560,
             self.root.winfo_screenheight()
         )
         self.root.overrideredirect(1)
@@ -49,3 +49,7 @@ class TasksGui(object):
     def get_task_index(self):
         """Returns the task index"""
         return self.task_index
+
+    def quit(self):
+        self.root.quit()
+        self.root.update()
