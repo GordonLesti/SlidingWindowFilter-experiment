@@ -3,10 +3,10 @@
 import errno
 import time
 from select import poll, POLLIN
-from src.experiment import Experiment
-from src.tasks_gui import TasksGui
 import threading
 import Queue
+from src.experiment import Experiment
+from src.tasks_gui import TasksGui
 
 class App(threading.Thread):
     """A application class puts accel data into a queue"""
