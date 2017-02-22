@@ -24,6 +24,7 @@ class TasksGui(object):
             )
             self.task_images[i] = self.task_images[i].resize(self.size, Image.ANTIALIAS)
             self.photo_images[i] = ImageTk.PhotoImage(self.task_images[i])
+            print "Preload img/" + str(i + 1) + ".png"
         self.panel = Label(
             self.root,
             image=self.photo_images[0],
