@@ -22,7 +22,9 @@ class TasksGui(object):
             self.task_images[i] = Image.open(
                 "img/" + str(i + 1) + ".png"
             )
-            self.task_images[i] = self.task_images[i].resize(self.size, Image.ANTIALIAS)
+            self.task_images[i] = self.task_images[i].resize(
+                self.size, Image.ANTIALIAS
+            )
             self.photo_images[i] = ImageTk.PhotoImage(self.task_images[i])
             print "Preload img/" + str(i + 1) + ".png"
         self.panel = Label(
@@ -51,5 +53,6 @@ class TasksGui(object):
         return self.task_index
 
     def quit(self):
+        """Qit the GUI"""
         self.root.quit()
         self.root.update()

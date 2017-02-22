@@ -22,8 +22,8 @@ class Experiment(object):
         if self.button_b_down:
             raise Exception('Button B is already down.')
         self.button_b_down = True
-        self.output += (self.__get_experiment_time_string(rec_time) + " START " \
-        + str(self.tasks.get_task_index()) + "\n")
+        self.output += (self.__get_experiment_time_string(rec_time) \
+        + " START " + str(self.tasks.get_task_index()) + "\n")
 
     def press_b_up(self, rec_time):
         """Handle B button pressed up"""

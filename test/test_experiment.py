@@ -1,5 +1,6 @@
 """This script contains tests for the Experiment class"""
 
+import time
 import unittest
 from src.experiment import Experiment
 
@@ -31,8 +32,8 @@ class TestExperiment(unittest.TestCase):
     def test_accel(self):
         """Tests the method accel"""
         experiment = Experiment(TasksMock())
-        experiment.accel(80, 48, 97)
-        experiment.accel(3, 42, 79)
+        experiment.accel(80, 48, 97, time.time())
+        experiment.accel(3, 42, 79, time.time())
         self.assertRegexpMatches(
             experiment.get_output(),
             '^[0-9]* 80 48 97\n[0-9]* 3 42 79\n$'
@@ -41,14 +42,14 @@ class TestExperiment(unittest.TestCase):
     def test_press_b_success(self):
         """Tests the method press_b_down"""
         experiment = Experiment(TasksMock())
-        experiment.accel(80, 48, 97)
-        experiment.press_b_down()
-        experiment.accel(3, 42, 79)
-        experiment.press_b_up()
-        experiment.accel(56, 21, 43)
-        experiment.press_b_down()
-        experiment.accel(62, 32, 28)
-        experiment.press_b_up()
+        experiment.accel(80, 48, 97, time.time())
+        experiment.press_b_down(time.time())
+        experiment.accel(3, 42, 79, time.time())
+        experiment.press_b_up(time.time())
+        experiment.accel(56, 21, 43, time.time())
+        experiment.press_b_down(time.time())
+        experiment.accel(62, 32, 28, time.time())
+        experiment.press_b_up(time.time())
         self.assertRegexpMatches(
             experiment.get_output(),
             '^[0-9]* 80 48 97\n[0-9]* START 0\n[0-9]* 3 42 79\n[0-9]* END 0' \
@@ -61,13 +62,13 @@ class TestExperiment(unittest.TestCase):
         experiment = Experiment(TasksMock())
         self.assertEquals(False, experiment.is_finished())
         for _ in range(0, 17):
-            experiment.press_b_down()
+            experiment.press_b_down(time.time())
             self.assertEquals(False, experiment.is_finished())
-            experiment.press_b_up()
+            experiment.press_b_up(time.time())
             self.assertEquals(False, experiment.is_finished())
-        experiment.press_b_down()
+        experiment.press_b_down(time.time())
         self.assertEquals(False, experiment.is_finished())
-        experiment.press_b_up()
+        experiment.press_b_up(time.time())
         self.assertEquals(True, experiment.is_finished())
 
 if __name__ == "__main__":
