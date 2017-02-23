@@ -9,7 +9,7 @@ class TasksGui(object):
     def __init__(self):
         self.root = Tk()
         self.size = (
-            2560,
+            self.root.winfo_screenwidth(),
             self.root.winfo_screenheight()
         )
         self.root.overrideredirect(1)
